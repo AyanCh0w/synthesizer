@@ -26,6 +26,8 @@ export async function generateEssay(
     )
   })
 
+  console.log(prompt)
+
   const response = await openai.chat.completions.create({
     model: "gpt-3.5-turbo",
     messages: [
@@ -45,6 +47,8 @@ export async function generateEssay(
     frequency_penalty: 0,
     presence_penalty: 0,
   })
+
+  console.log(response)
 
   return response.choices[0].message.content
 }
