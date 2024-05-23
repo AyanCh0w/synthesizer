@@ -1,51 +1,51 @@
-"use client";
-import { useState } from "react";
-import { Textarea } from "@/components/ui/textarea";
-import { Label } from "@/components/ui/label";
-import { Button } from "@/components/ui/button";
+"use client"
+import { useState } from "react"
+import { Textarea } from "@/components/ui/textarea"
+import { Label } from "@/components/ui/label"
+import { Button } from "@/components/ui/button"
 
-import { paragraph } from "@/types";
+import { paragraph } from "@/types"
 
-import { generateEssay } from "@/app/actions";
+import { generateEssay } from "@/app/actions"
 
-import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs"
 
 import {
   Tooltip,
   TooltipContent,
   TooltipProvider,
   TooltipTrigger,
-} from "@/components/ui/tooltip";
+} from "@/components/ui/tooltip"
 
 export default function Home() {
-  const [thesis, setThesis] = useState<string>("");
+  const [thesis, setThesis] = useState<string>("")
 
-  const [essay, setEssay] = useState<string | undefined>(undefined);
+  const [essay, setEssay] = useState<string | null>(null)
 
   const [paragraphs, setParagraphs] = useState<paragraph[]>([
     {
       topicSentence: "",
       evidence: "",
     },
-  ]);
+  ])
 
-  const [skillLevel, setSkillLevel] = useState<string>("High Schooler");
-  const [length, setLength] = useState<string>("Normal");
-  const [analysis, setAnalysis] = useState<string>("Thinker");
+  const [skillLevel, setSkillLevel] = useState<string>("High Schooler")
+  const [length, setLength] = useState<string>("Normal")
+  const [analysis, setAnalysis] = useState<string>("Thinker")
 
-  const [generateReady, setGenerateReady] = useState<boolean>(true);
+  const [generateReady, setGenerateReady] = useState<boolean>(true)
 
   function addParagraph() {
     const newList = paragraphs.concat({
       topicSentence: "",
       evidence: "",
-    });
-    setParagraphs(newList);
+    })
+    setParagraphs(newList)
   }
   function removeParagraph(index: number) {
-    const newList = [...paragraphs];
-    newList.splice(index, 1);
-    setParagraphs(newList);
+    const newList = [...paragraphs]
+    newList.splice(index, 1)
+    setParagraphs(newList)
   }
 
   return (
@@ -64,7 +64,7 @@ export default function Home() {
                 className={"w-full"}
                 value={"Elementary Schooler"}
                 onClick={() => {
-                  setSkillLevel("Elementary Schooler");
+                  setSkillLevel("Elementary Schooler")
                 }}
               >
                 Elementary School
@@ -73,7 +73,7 @@ export default function Home() {
                 value={"High Schooler"}
                 className={"w-full"}
                 onClick={() => {
-                  setSkillLevel("High Schooler");
+                  setSkillLevel("High Schooler")
                 }}
               >
                 High School
@@ -82,7 +82,7 @@ export default function Home() {
                 value={"College Student"}
                 className={"w-full"}
                 onClick={() => {
-                  setSkillLevel("College Student");
+                  setSkillLevel("College Student")
                 }}
               >
                 College Student
@@ -91,7 +91,7 @@ export default function Home() {
                 value={"Philosophiser"}
                 className={"w-full"}
                 onClick={() => {
-                  setSkillLevel("Philosophiser");
+                  setSkillLevel("Philosophiser")
                 }}
               >
                 Philosophiser
@@ -107,7 +107,7 @@ export default function Home() {
                 className={"w-full"}
                 value={"Brief"}
                 onClick={() => {
-                  setLength("Brief");
+                  setLength("Brief")
                 }}
               >
                 Brief
@@ -116,7 +116,7 @@ export default function Home() {
                 value={"Casual"}
                 className={"w-full"}
                 onClick={() => {
-                  setLength("Casual");
+                  setLength("Casual")
                 }}
               >
                 Casual
@@ -125,7 +125,7 @@ export default function Home() {
                 value={"Normal"}
                 className={"w-full"}
                 onClick={() => {
-                  setLength("Essay");
+                  setLength("Essay")
                 }}
               >
                 Essay
@@ -134,7 +134,7 @@ export default function Home() {
                 value={"Thesis Paper"}
                 className={"w-full"}
                 onClick={() => {
-                  setLength("Thesis Paper");
+                  setLength("Thesis Paper")
                 }}
               >
                 Thesis Paper
@@ -150,7 +150,7 @@ export default function Home() {
                 className={"w-full"}
                 value={"Obvious"}
                 onClick={() => {
-                  setAnalysis("Obvious");
+                  setAnalysis("Obvious")
                 }}
               >
                 Obvious
@@ -159,7 +159,7 @@ export default function Home() {
                 value={"Thinker"}
                 className={"w-full"}
                 onClick={() => {
-                  setAnalysis("Thinker");
+                  setAnalysis("Thinker")
                 }}
               >
                 Thinker
@@ -168,7 +168,7 @@ export default function Home() {
                 value={"Pro Analyzer"}
                 className={"w-full"}
                 onClick={() => {
-                  setAnalysis("Pro Analyzer");
+                  setAnalysis("Pro Analyzer")
                 }}
               >
                 Pro Analyzer
@@ -196,7 +196,7 @@ export default function Home() {
           <Textarea
             className={"mt-2"}
             onChange={(e) => {
-              setThesis(e.target.value);
+              setThesis(e.target.value)
             }}
           ></Textarea>
         </div>
@@ -226,7 +226,7 @@ export default function Home() {
                 </Label>
                 <Textarea
                   onChange={(event) => {
-                    paragraphs[index].topicSentence = event.target.value;
+                    paragraphs[index].topicSentence = event.target.value
                   }}
                 />
               </div>
@@ -247,7 +247,7 @@ export default function Home() {
                 </Label>
                 <Textarea
                   onChange={(event) => {
-                    paragraphs[index].evidence = event.target.value;
+                    paragraphs[index].evidence = event.target.value
                   }}
                 />
               </div>
@@ -258,7 +258,7 @@ export default function Home() {
           className="w-full"
           variant={"outline"}
           onClick={() => {
-            addParagraph();
+            addParagraph()
           }}
         >
           Add Paragraph
@@ -266,16 +266,16 @@ export default function Home() {
         <Button
           disabled={!generateReady}
           onClick={async () => {
-            console.log(thesis, skillLevel, length, analysis, paragraphs);
+            console.log(thesis, skillLevel, length, analysis, paragraphs)
             setEssay(
               await generateEssay(
                 thesis,
                 skillLevel,
                 length,
                 analysis,
-                paragraphs,
-              ),
-            );
+                paragraphs
+              )
+            )
           }}
         >
           Synthesise
@@ -287,5 +287,5 @@ export default function Home() {
         </div>
       )}
     </main>
-  );
+  )
 }
